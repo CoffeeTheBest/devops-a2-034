@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 2 Report - Huzaifa (SP23-BCS-034)</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      background: #ffffff;
+      color: #1f2328;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+    .page {
+      height: 280mm;
+      max-height: 280mm;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+    .header-bar {
+      border-bottom: 2px solid #0969da;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .institution {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0969da;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .course-title {
+      font-size: 10px;
+      color: #57606a;
+    }
+    .title-block {
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 16px;
+      color: #0969da;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 5px;
+      padding: 6px 10px;
+      margin-bottom: 8px;
+    }
+    .meta-item strong {
+      display: block;
+      color: #57606a;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .meta-item span {
+      font-size: 10px;
+      font-weight: 600;
+      color: #24292f;
+    }
+    h2 {
+      font-size: 11.5px;
+      color: #0969da;
+      border-bottom: 1px solid #d0d7de;
+      padding-bottom: 2px;
+      margin: 7px 0 4px 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .links-box {
+      background: #f0f7ff;
+      border: 1px solid #0969da40;
+      border-radius: 5px;
+      padding: 6px 10px;
+      margin-bottom: 6px;
+    }
+    .links-box ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .links-box li {
+      font-size: 9.5px;
+    }
+    .links-box li strong {
+      color: #0969da;
+      display: inline-block;
+      width: 140px;
+    }
+    .links-box a {
+      color: #0969da;
+      text-decoration: underline;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 9px;
+      word-break: break-all;
+    }
+    p {
+      margin-bottom: 5px;
+      text-align: justify;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 4px 0 6px 0;
+      font-size: 9px;
+    }
+    table th, table td {
+      border: 1px solid #d0d7de;
+      padding: 4px 6px;
+      text-align: left;
+    }
+    table th {
+      background: #f6f8fa;
+      font-weight: 700;
+      color: #24292f;
+    }
+    table tr:nth-child(even) td {
+      background: #fafbfc;
+    }
+    .code-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: #eff1f3;
+      padding: 1px 3px;
+      border-radius: 3px;
+      font-size: 8.5px;
+      color: #cf222e;
+    }
+    .highlight-box {
+      background: #fff8c5;
+      border-left: 3px solid #d4a72c;
+      padding: 5px 8px;
+      margin: 5px 0;
+      font-size: 9px;
+      border-radius: 0 4px 4px 0;
+    }
+    .error-box {
+      background: #ffebe9;
+      border-left: 3px solid #cf222e;
+      padding: 4px 8px;
+      margin: 4px 0;
+      font-size: 9px;
+      border-radius: 0 4px 4px 0;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .screenshot-card {
+      border: 1px solid #d0d7de;
+      border-radius: 5px;
+      overflow: hidden;
+      background: #f6f8fa;
+      display: flex;
+      flex-direction: column;
+    }
+    .img-container {
+      height: 64mm;
+      max-height: 64mm;
+      background: #0d1117;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid #d0d7de;
+    }
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .screenshot-caption {
+      padding: 3px 6px;
+      font-size: 8.5px;
+      font-weight: 600;
+      color: #57606a;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 18px;
+    }
+    .screenshot-caption span.tag {
+      font-size: 7.5px;
+      background: #ddf4ff;
+      color: #0969da;
+      border: 1px solid #54aeff66;
+      border-radius: 8px;
+      padding: 1px 5px;
+    }
+    footer.report-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid #d0d7de;
+      padding-top: 3px;
+      text-align: center;
+      font-size: 8px;
+      color: #8c959f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: FIRST PAGE MANDATORY SUBMISSION LINKS & REPORT CONTENT -->
+  <div class="page">
+    <div class="header-bar">
+      <div>
+        <div class="institution">COMSATS University Islamabad, Attock Campus</div>
+        <div class="course-title">DevOps for Cloud Computing (CSC418) &bull; Lab Course &bull; Fall 2026</div>
+      </div>
+      <div style="text-align: right; font-size: 9.5px; color: #57606a;">
+        Instructor: Mr. Babar Shazad
+      </div>
+    </div>
+
+    <div class="title-block">
+      <h1>Assignment 2: Build, Containerize and Automate</h1>
+      <p style="font-size: 9.5px; color: #57606a;">
+        Comprehensive Implementation Report covering Git Workflows, Docker Packaging, GitHub Actions CI/CD Pipeline, and GitHub Webhooks.
+      </p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <strong>Student Name</strong>
+        <span>Huzaifa</span>
+      </div>
+      <div class="meta-item">
+        <strong>Registration Number</strong>
+        <span>SP23-BCS-034</span>
+      </div>
+      <div class="meta-item">
+        <strong>GitHub Account</strong>
+        <span>CoffeeTheBest</span>
+      </div>
+      <div class="meta-item">
+        <strong>Docker Hub Account</strong>
+        <span>coffethebest</span>
+      </div>
+    </div>
+
+    <!-- MANDATORY FIRST PAGE SUBMISSION LINKS -->
+    <h2>1. Core Submission Links (Mandatory First Page)</h2>
+    <div class="links-box">
+      <ul>
+        <li>
+          <strong>GitHub Repository:</strong><br>
+          <a href="https://github.com/CoffeeTheBest/devops-a2-034" target="_blank">https://github.com/CoffeeTheBest/devops-a2-034</a>
+        </li>
+        <li>
+          <strong>Docker Hub Repository:</strong><br>
+          <a href="https://hub.docker.com/r/coffethebest/devops-a2" target="_blank">https://hub.docker.com/r/coffethebest/devops-a2</a>
+        </li>
+        <li>
+          <strong>Successful Workflow Run:</strong><br>
+          <a href="https://github.com/CoffeeTheBest/devops-a2-034/actions/runs/44105895028" target="_blank">actions/runs/44105895028 (Passed)</a>
+        </li>
+        <li>
+          <strong>Failed Workflow Run:</strong><br>
+          <a href="https://github.com/CoffeeTheBest/devops-a2-034/actions/runs/44105576736" target="_blank">actions/runs/44105576736 (Quality Gate Fail)</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- POINT 1: WHAT YOUR PROJECT DOES -->
+    <h2>2. Project Functionality (Point 1)</h2>
+    <p>
+      This project implements an automated, containerized personal portfolio web application built with plain HTML and CSS served via an Alpine Nginx web server. The codebase is version-controlled on GitHub following strict feature-branching conventions, containerized into lightweight Docker images, and governed by a continuous integration and continuous deployment (CI/CD) pipeline via GitHub Actions. Whenever commits are pushed or merged into the <code>main</code> branch, automated quality checks validate file integrity and metadata before building and publishing multi-tagged production containers to Docker Hub, while real-time lifecycle event notifications are emitted to an external webhook receiver.
+    </p>
+
+    <!-- POINT 3: WEBHOOK TABLE & COMPARATIVE ANALYSIS -->
+    <h2>3. Webhook Architecture & Event Analysis (Part D & Point 3)</h2>
+    <p>
+      A webhook was attached to the repository targeting <code>webhook.site</code> with events configured for <code>push</code> and <code>pull_request</code> with <code>application/json</code> payload format. The captured events are tabulated below:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 17%;">Event</th>
+          <th style="width: 23%;">Value of X-GitHub-Event</th>
+          <th style="width: 25%;">Value of ref field (push only)</th>
+          <th>Student Observation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ping</strong></td>
+          <td><span class="code-badge">ping</span></td>
+          <td><em>N/A (field not present)</em></td>
+          <td>Sent instantaneously by GitHub upon webhook registration to handshake and confirm endpoint reachability (returned HTTP 200 with hook ID 713149753).</td>
+        </tr>
+        <tr>
+          <td><strong>Push</strong></td>
+          <td><span class="code-badge">push</span></td>
+          <td><span class="code-badge">refs/heads/main</span> / <span class="code-badge">feature-endpoint</span></td>
+          <td>Fired upon git push; payload includes commit array, before/after SHA hashes, pusher credentials, and exact git branch reference targeted.</td>
+        </tr>
+        <tr>
+          <td><strong>Pull Request</strong></td>
+          <td><span class="code-badge">pull_request</span></td>
+          <td><em>N/A (action: "opened" / "closed")</em></td>
+          <td>Emitted when PR #1 was opened, synchronized, and merged; payload specifies PR number (#1), head/base branch references, and author details.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <strong>Core Architectural Difference (Webhook vs. GitHub Actions):</strong><br>
+      A <strong>GitHub Webhook</strong> is a passive, outbound HTTP push notification system that serializes events into JSON and transmits them to external listening endpoints without performing any compute or execution itself. Conversely, a <strong>GitHub Actions Workflow</strong> is an active, fully integrated CI/CD execution engine running on provisioned virtual machine runners that interprets repository event triggers, clones the code, enforces custom validation gates, compiles container images, and automates deployments.
+    </div>
+
+    <!-- POINT 4: REAL PROBLEM FACED, ERROR MESSAGE & SOLUTION -->
+    <h2>4. Real Problem Faced, Error Message, and Resolution (Point 4)</h2>
+    <p>
+      <strong>Problem Description:</strong> During the local manual Docker push and automated GitHub Actions publishing steps, the Docker CLI and <code>docker-login-action@v3</code> failed authentication against Docker Hub, preventing image publication under the <code>coffethebest/devops-a2</code> repository namespace.
+    </p>
+    <div class="error-box">
+      <strong>Exact Error Messages Encountered:</strong><br>
+      Local CLI: <code>Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password</code><br>
+      Actions CI: <code>Error: buildx failed with: ERROR: failed to solve: failed to push coffethebest/devops-a2:latest: server message: insufficient_scope: authorization failed</code>
+    </div>
+    <p>
+      <strong>Diagnosis & Resolution:</strong> Two root causes were identified: (1) an account name casing/spelling discrepancy between the GitHub handle (<code>CoffeeTheBest</code>) and the Docker Hub namespace (<code>coffethebest</code>), and (2) attempt to authenticate using interactive user credentials rather than a dedicated scoped token. To resolve this cleanly, a new Read, Write, Delete Personal Access Token (PAT: <code>dckr_pat_...</code>) was created in Docker Hub Security Settings. The secrets <code>DOCKERHUB_USERNAME</code> and <code>DOCKERHUB_TOKEN</code> were configured in repository Actions secrets via the GitHub CLI (<code>gh secret set</code>), and the local Docker daemon was authenticated using <code>docker login -u coffethebest --password-stdin</code>, immediately enabling successful multi-tag pushes for both <code>manual</code> and <code>latest</code> tags.
+    </p>
+
+    <footer class="report-footer">
+      Page 1 of 2 &bull; DevOps for Cloud Computing (CSC418) &bull; Huzaifa (SP23-BCS-034)
+    </footer>
+  </div>
+
+  <!-- PAGE 2: VISUAL EVIDENCE & SCREENSHOTS (POINT 2) -->
+  <div class="page page-break">
+    <div class="header-bar">
+      <div>
+        <div class="institution">COMSATS University Islamabad, Attock Campus</div>
+        <div class="course-title">Assignment 2 &bull; Visual Proof of Execution &bull; DevOps Artifact Gallery</div>
+      </div>
+      <div style="text-align: right; font-size: 9.5px; color: #57606a;">
+        Student: Huzaifa (SP23-BCS-034)
+      </div>
+    </div>
+
+    <h2>5. Visual Verification Gallery (Point 2 - All Required Screenshots)</h2>
+    <p style="margin-bottom: 4px;">
+      The screenshots below document authentic, verifiable completion of every required stage of Assignment 2, including version control history, pull request lifecycle, CI automated quality gates, Docker Hub registry publication, container runtime verification, and webhook deliveries.
+    </p>
+
+    <div class="gallery-grid">
+      <!-- SCREENSHOT 1: COMMIT HISTORY -->
+      <div class="screenshot-card">
+        <div class="img-container">
+          <img src="file:///home/huzaifa/Projects/Work/University Stuff/DevOPs/lab/assignment2/screenshots/screenshot_commits.png" alt="Commit History">
+        </div>
+        <div class="screenshot-caption">
+          <span>Figure 1: GitHub Commit History (9 structured commits with merge)</span>
+          <span class="tag">Part A: Git</span>
+        </div>
+      </div>
+
+      <!-- SCREENSHOT 2: MERGED PULL REQUEST -->
+      <div class="screenshot-card">
+        <div class="img-container">
+          <img src="file:///home/huzaifa/Projects/Work/University Stuff/DevOPs/lab/assignment2/screenshots/pr_merged.png" alt="Merged Pull Request">
+        </div>
+        <div class="screenshot-caption">
+          <span>Figure 2: Merged Pull Request #1 (feature-endpoint &rarr; main)</span>
+          <span class="tag">Part A: PR Merge</span>
+        </div>
+      </div>
+
+      <!-- SCREENSHOT 3: ACTIONS RUNS -->
+      <div class="screenshot-card">
+        <div class="img-container">
+          <img src="file:///home/huzaifa/Projects/Work/University Stuff/DevOPs/lab/assignment2/screenshots/actions_runs.png" alt="GitHub Actions Runs">
+        </div>
+        <div class="screenshot-caption">
+          <span>Figure 3: Actions Tab showing one intentional failure &amp; passed CI runs</span>
+          <span class="tag">Part C: Actions CI</span>
+        </div>
+      </div>
+
+      <!-- SCREENSHOT 4: DOCKER HUB TAGS -->
+      <div class="screenshot-card">
+        <div class="img-container">
+          <img src="file:///home/huzaifa/Projects/Work/University Stuff/DevOPs/lab/assignment2/screenshots/dockerhub_tags.png" alt="Docker Hub Tags Page">
+        </div>
+        <div class="screenshot-caption">
+          <span>Figure 4: Docker Hub Tags (showing 'manual' &amp; 'latest' tags)</span>
+          <span class="tag">Part B &amp; C: Registry</span>
+        </div>
+      </div>
+
+      <!-- SCREENSHOT 5: CONTAINER IN BROWSER -->
+      <div class="screenshot-card">
+        <div class="img-container">
+          <img src="file:///home/huzaifa/Projects/Work/University Stuff/DevOPs/lab/assignment2/screenshots/container_browser.png" alt="Containerized Webpage">
+        </div>
+        <div class="screenshot-caption">
+          <span>Figure 5: Webpage served from container (http://localhost:8080/)</span>
+          <span class="tag">Part B: Docker Run</span>
+        </div>
+      </div>
+
+      <!-- SCREENSHOT 6: WEBHOOK SITE -->
+      <div class="screenshot-card">
+        <div class="img-container">
+          <img src="file:///home/huzaifa/Projects/Work/University Stuff/DevOPs/lab/assignment2/screenshots/webhook_site.png" alt="Webhook Site Requests">
+        </div>
+        <div class="screenshot-caption">
+          <span>Figure 6: Webhook.site stream (Ping, Push, PR deliveries)</span>
+          <span class="tag">Part D: Webhook</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="report-footer">
+      Page 2 of 2 &bull; DevOps for Cloud Computing (CSC418) &bull; Huzaifa (SP23-BCS-034)
+    </footer>
+  </div>
+
+</body>
+</html>
