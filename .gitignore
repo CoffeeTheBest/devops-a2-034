@@ -1,0 +1,11 @@
+# Dependency and OS files
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Course PDFs and generated artifacts
+*.pdf
+
+# Temporary files
+*.tmp
